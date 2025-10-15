@@ -18,7 +18,7 @@ export default function Footer() {
 
         {/* Right side - Social icons */}
         <div className="flex items-center gap-4">
-          <a href="https://github.com/" target="_blank" rel="noopener noreferrer" className="p-2 bg-white/10 hover:bg-white/20 rounded-full transition">
+          <a href="https://github.com/utkarsh369gupta" target="_blank" rel="noopener noreferrer" className="p-2 bg-white/10 hover:bg-white/20 rounded-full transition">
             <Github size={20} />
           </a>
           <a href="https://www.linkedin.com/in/utkarshgupta369/" target="_blank" rel="noopener noreferrer" className="p-2 bg-white/10 hover:bg-white/20 rounded-full transition">
