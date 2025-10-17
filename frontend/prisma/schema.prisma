@@ -1,0 +1,57 @@
+generator client {
+  provider = "prisma-client-js"
+  output   = "../src/generated/prisma"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+model User {
+  id          String    @id @default(cuid())
+  clerkId     String    @unique
+  email       String    @unique
+  name        String?
+  imageUrl    String?
+  createdAt   DateTime  @default(now())
+  updatedAt   DateTime  @updatedAt
+
+  // Relations
+  recipes     Recipe[]  @relation("UserRecipes")
+  ratings     Rating[]  @relation("UserRatings")
+}
+
+model Recipe {
+  id            String    @id @default(cuid())
+  title         String
+  description   String?
+  imageUrl      String?
+  createdAt     DateTime  @default(now())
+  updatedAt     DateTime  @updatedAt
+
+  // Relations
+  author        User?     @relation("UserRecipes", fields: [authorId], references: [id])
+  authorId      String?
+
+  // 🔹 Combined fields (JSON for flexibility)
+  ingredients   Json       // e.g. [{ name: "Tomato", quantity: "2" }]
+  steps         Json       // e.g. ["Chop tomatoes", "Cook with spices"]
+  nutrition     Json?      // e.g. { calories: 400, protein: 20, fat: 15, carbs: 30 }
+
+  ratings       Rating[]   @relation("RecipeRatings")
+}
+
+model Rating {
+  id          String   @id @default(cuid())
+  value       Int      // 1–5 stars
+  comment     String?
+  createdAt   DateTime @default(now())
+
+  // Relations
+  user        User     @relation("UserRatings", fields: [userId], references: [id])
+  userId      String
+
+  recipe      Recipe   @relation("RecipeRatings", fields: [recipeId], references: [id])
+  recipeId    String
+}

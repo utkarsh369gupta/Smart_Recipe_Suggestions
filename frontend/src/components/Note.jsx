@@ -62,7 +62,7 @@ const Note = () => {
             <div className="mt-3 text-sm">
               The full application with the advanced model is available on GitHub:
               <a
-                href="https://github.com/your-github-repo-link"
+                href="https://github.com/utkarsh369gupta/Smart_Recipe_Suggestions.git"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="block mt-2 text-blue-400 hover:underline"

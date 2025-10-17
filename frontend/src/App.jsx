@@ -1,6 +1,7 @@
 import React, { useState } from "react";
+import { UserButton } from "@clerk/clerk-react";
+import { SignedIn, SignedOut, SignInButton } from "@clerk/clerk-react";
 
-import { UserButton } from "@clerk/clerk-react"; 
 
 import ImageUploader from "./components/ImageUploader";
 import GetRecipes from "./components/GetRecipes";
@@ -10,11 +11,10 @@ import Note from "./components/Note";
 
 export default function App() {
 
-    
     const [ingredients, setIngredients] = useState([]);
     const [diet, setDiet] = useState("");
     const [recipes, setRecipes] = useState([]);
-    
+
     return (
         <div className="relative min-h-screen overflow-hidden text-white">
             {/* Gradient background */}
@@ -24,26 +24,27 @@ export default function App() {
             <div className="absolute inset-0 backdrop-blur-[100px]"></div>
 
             {/* 🔹 Transparent Navbar */}
-            <nav className="relative z-50 flex items-center justify-between px-6 py-4 bg-transparent md:px-100 lg:px-100">
-                {/* Left: Menu icon */}
-
+            <nav className="relative z-50 flex items-center justify-between px-6 py-4 bg-transparent">
                 <AboutMe />
-
-                {/* Center: App title or logo */}
                 <h1 className="text-lg font-semibold tracking-wide md:hidden lg:hidden">Smart Recipes</h1>
 
-                {/* Right: Icons */}
                 <div className="flex items-center gap-4 md:gap-10 lg:gap-10">
+                    <Note />
 
-                    <Note></Note>
+                    <SignedIn>
+                        <UserButton afterSignOutUrl="/" />
+                    </SignedIn>
 
-                    {/* Placeholder avatar (replace with Clerk later) */}
-                    <div className="w-12 h-12 rounded-full flex items-center justify-center md:w-15 md:h-15 bg-black/30">
-                        <img src="baby-boy.png" alt="" />
-                    </div>
-
+                    <SignedOut>
+                        <SignInButton mode="modal">
+                            <button className="px-4 py-2 bg-white/20 rounded-lg text-white hover:bg-white/30">
+                                Sign In
+                            </button>
+                        </SignInButton>
+                    </SignedOut>
                 </div>
             </nav>
+
 
             {/* 🔹 Main content layout */}
             <div className="flex flex-col md:flex-row min-h-screen text-center pb-24 gap-4">
