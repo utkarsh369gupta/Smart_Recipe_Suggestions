@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 
-// import { UserButton } from "@clerk/clerk-react"; // uncomment when Clerk is set up
+import { UserButton } from "@clerk/clerk-react"; 
 
 import ImageUploader from "./components/ImageUploader";
 import GetRecipes from "./components/GetRecipes";
