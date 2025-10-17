@@ -3,6 +3,10 @@ uvicorn
 ultralytics
 pillow
 requests
+prisma
+pydantic
+python-dotenv
+
 
 
 
